@@ -9,7 +9,23 @@ const rootReducer = combineReducers({
 })
 
 
-const store = createStore(rootReducer)
+const persistedState = {
+  todos: [{
+    id: 0,
+    text: 'learn functional programming',
+    completed: false
+  }, {
+    id: 1,
+    text: 'workout',
+    completed: false
+  }]
+}
+
+
+const store = createStore(
+  rootReducer,
+  persistedState
+)
 
 
 window.store = store

@@ -1,5 +1,5 @@
-const createStore = (reducer) => {
-  let state
+const createStore = (reducer, initialState) => {
+  let state = initialState
   const listeners = []
 
   const getState = () => {
@@ -29,7 +29,7 @@ const createStore = (reducer) => {
   return {
     dispatch,
     getState,
-    subscribe,
+    subscribe
   }
 }
 

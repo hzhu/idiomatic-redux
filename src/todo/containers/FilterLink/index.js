@@ -24,7 +24,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onFilterClick: filter => dispatch(setVisibilityFilter(ownProps.filter))
+  onFilterClick() {
+    dispatch(setVisibilityFilter(ownProps.filter))
+  }
 })
 
 
