@@ -10,15 +10,19 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
+    "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-redux": "^5.0.4",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
+    "tachyons": "^4.7.4",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "redux-logger": "^3.0.6",
+    "react-scripts": "1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

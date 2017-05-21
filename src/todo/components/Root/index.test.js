@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TodoApp from './index'
-import Provider from '../redux/Provider'
-import configureStore from './store'
+import Root from './index'
+import configureStore from '../../store'
 
 
 it('renders without crashing', () => {
@@ -10,8 +9,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div')
 
   ReactDOM.render(
-    <Provider store={store}>
-      <TodoApp />
-    </Provider>
-  , div)
+    <Root store={store} />,
+    div
+  )
 })

@@ -11,6 +11,7 @@ const Link = ({ active, onFilterClick, children }) => {
   }
 
   return (
+    // eslint-disable-next-line
     <a href="#" onClick={onFilterClick}>
       {children}
     </a>

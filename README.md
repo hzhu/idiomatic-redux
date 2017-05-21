@@ -1,4 +1,4 @@
-#idiomatic-redux
+idiomatic-redux
 =========================
 An idiomatic redux todo app.
 
