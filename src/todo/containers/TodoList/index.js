@@ -29,13 +29,6 @@ const mapStateToProps = state => ({
 })
 
 
-const mapDispatchToProps = dispatch => ({
-  toggleTodo(id) {
-    dispatch(toggleTodo(id))
-  }
-})
-
-
 let TodoList = ({ todos, toggleTodo }) => (
   <ul>
     {
@@ -53,7 +46,10 @@ let TodoList = ({ todos, toggleTodo }) => (
 )
 
 
-TodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
+TodoList = connect(
+  mapStateToProps,
+  { toggleTodo }
+)(TodoList)
 
 
 export default TodoList
