@@ -1,19 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TodoApp from './todo'
-import store from './todo/store'
-import Provider from './redux/Provider'
+import configureStore from './todo/store'
+import Root from './todo/components/Root'
 
+
+const store = configureStore()
 
 const render = () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <TodoApp />
-    </Provider>,
+    <Root store={store} />,
     document.getElementById('root')
   )
 }
-
 
 /**
  * Subscribe render method to trigger when store is updated
@@ -24,6 +22,6 @@ store.subscribe(render)
 
 
 /**
- * Used trigger initial render
- */
+* Used trigger initial render.
+*/
 store.dispatch({type: ''})

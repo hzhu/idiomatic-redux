@@ -1,7 +1,7 @@
 import React from 'react'
-import TodoList from './containers/TodoList'
-import Footer from './components/Footer'
-import AddTodo from './containers/AddTodo'
+import TodoList from '../../containers/TodoList'
+import Footer from '../Footer'
+import AddTodo from '../../containers/AddTodo'
 
 
 const TodoApp = () => (
@@ -11,6 +11,5 @@ const TodoApp = () => (
     <Footer />
   </div>
 )
-
 
 export default TodoApp

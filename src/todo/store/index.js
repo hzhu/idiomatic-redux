@@ -5,25 +5,26 @@ import { loadState, saveState } from './localStorage'
 import { throttle } from 'lodash'
 
 
-const rootReducer = combineReducers({
-  todos,
-  visibilityFilter
-})
-
-
-const persistedState = loadState()
-
-
-const store = createStore(
-  rootReducer,
-  persistedState
-)
-
-store.subscribe(throttle(() => {
-  saveState({
-    todos: store.getState().todos
+const configureStore = () => {
+  const rootReducer = combineReducers({
+    todos,
+    visibilityFilter
   })
-}, 1000))
 
-window.store = store
-export default store
+  const persistedState = loadState()
+
+  const store = createStore(
+    rootReducer,
+    persistedState
+  )
+
+  store.subscribe(throttle(() => {
+    saveState({
+      todos: store.getState().todos
+    })
+  }, 1000))
+
+  return store
+}
+
+export default configureStore

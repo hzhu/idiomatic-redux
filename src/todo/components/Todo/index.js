@@ -10,5 +10,4 @@ const Todo = ({ id, completed, text, toggleTodo }) => (
   </li>
 )
 
-
 export default Todo

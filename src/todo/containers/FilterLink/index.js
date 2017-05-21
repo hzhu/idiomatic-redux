@@ -17,11 +17,9 @@ const Link = ({ active, onFilterClick, children }) => {
   )
 }
 
-
 const mapStateToProps = (state, ownProps) => ({
   active: state.visibilityFilter === ownProps.filter
 })
-
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onFilterClick() {
@@ -29,11 +27,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-
 const FilterLink = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Link)
-
 
 export default FilterLink
