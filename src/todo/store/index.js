@@ -1,6 +1,8 @@
 import createStore from '../../redux/createStore'
 import combineReducers from '../../redux/combineReducers'
 import { todos, visibilityFilter } from './Todos/reducers'
+import { loadState, saveState } from './localStorage'
+import { throttle } from 'lodash'
 
 
 const rootReducer = combineReducers({
@@ -9,17 +11,7 @@ const rootReducer = combineReducers({
 })
 
 
-const persistedState = {
-  todos: [{
-    id: 0,
-    text: 'learn functional programming',
-    completed: false
-  }, {
-    id: 1,
-    text: 'workout',
-    completed: false
-  }]
-}
+const persistedState = loadState()
 
 
 const store = createStore(
@@ -27,6 +19,11 @@ const store = createStore(
   persistedState
 )
 
+store.subscribe(throttle(() => {
+  saveState({
+    todos: store.getState().todos
+  })
+}, 1000))
 
 window.store = store
 export default store

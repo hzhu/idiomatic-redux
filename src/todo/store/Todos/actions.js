@@ -1,14 +1,13 @@
+import { v4 } from 'uuid'
+
 /**
  * Action Creators
  */
 
 
-let nextTodoId = 2
-
-
 export const addTodo = text => ({
   type: 'ADD_TODO',
-  id: nextTodoId++,
+  id: v4(),
   text
 })
 
