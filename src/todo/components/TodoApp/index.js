@@ -9,6 +9,9 @@ const TodoApp = () => (
     <TodoList />
     <AddTodo />
     <Footer />
+    <br />
+    <p>This app is running in <b>{process.env.NODE_ENV}</b> environment.</p>
+    <i>process.env.NODE_ENV === {process.env.NODE_ENV}</i>
   </div>
 )
 

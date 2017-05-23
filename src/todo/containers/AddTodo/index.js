@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../store/Todos/actions'
+import { logEvent } from '../../../amplitude'
 
 
 let AddTodo = ({ dispatch }) => {
@@ -11,6 +12,11 @@ let AddTodo = ({ dispatch }) => {
       <input ref={node => input = node} />
       <button onClick={() => {
         dispatch(addTodo(input.value))
+
+        logEvent('Added Todo', {
+          todo: input.value
+        })
+
         input.value = ''
       }}>
         Add Todo
