@@ -9,6 +9,7 @@
   "author": "Henry Zhu",
   "license": "MIT",
   "dependencies": {
+    "history": "^4.6.1",
     "lodash": "^4.17.4",
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
@@ -21,8 +22,8 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "redux-logger": "^3.0.6",
-    "react-scripts": "1.0.5"
+    "react-scripts": "1.0.5",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
