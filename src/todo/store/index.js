@@ -1,14 +1,13 @@
 import createStore from '../../redux/createStore'
 import combineReducers from '../../redux/combineReducers'
-import { todos, visibilityFilter } from './Todos/reducers'
+import { todos } from './Todos/reducers'
 import { loadState, saveState } from './localStorage'
 import { throttle } from 'lodash'
 
 
 const configureStore = () => {
   const rootReducer = combineReducers({
-    todos,
-    visibilityFilter
+    todos
   })
 
   const persistedState = loadState()

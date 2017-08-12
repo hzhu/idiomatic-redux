@@ -4,12 +4,16 @@ import AddTodo from '../../containers/AddTodo'
 import Footer from '../Footer'
 
 
-const TodoApp = () => (
-  <div>
-    <TodoList />
-    <AddTodo />
-    <Footer />
-  </div>
-)
+const TodoApp = ({ match }) => {
+  const filter = match.params.filter
+  return (
+    <div>
+      <TodoList filter={filter} />
+      <AddTodo />
+      <Footer />
+    </div>
+  )
+}
+
 
 export default TodoApp
