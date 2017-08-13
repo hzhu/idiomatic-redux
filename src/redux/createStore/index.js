@@ -17,9 +17,7 @@ const createStore = (reducer, initialState) => {
   const subscribe = (listener) => {
     listeners.push(listener)
 
-    return () => {
-      listeners.filter(l => l !== listener)
-    }
+    return () => listeners.filter(l => l !== listener)
   }
 
   // to setup initalState
