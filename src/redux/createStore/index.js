@@ -1,12 +1,11 @@
 const createStore = (reducer, initialState) => {
   let state = initialState
+
   const listeners = []
 
-  const getState = () => {
-    return state
-  }
+  const getState = () => state
 
-  const dispatch = (action) => {
+  const dispatch = action => {
     state = reducer(state, action)
 
     // Notify every change listener by calling it.
