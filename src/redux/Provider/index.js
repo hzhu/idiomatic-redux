@@ -3,6 +3,10 @@ import { object } from 'prop-types'
 
 
 class Provider extends React.Component {
+  static childContextTypes = {
+    store: object
+  }
+
   getChildContext() {
     return {
       store: this.props.store
@@ -12,10 +16,6 @@ class Provider extends React.Component {
   render() {
     return this.props.children
   }
-}
-
-Provider.childContextTypes = {
-  store: object
 }
 
 export default Provider
