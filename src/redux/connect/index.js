@@ -13,10 +13,15 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
       }
 
       componentDidMount() {
+        const { store } = this.context
+
         // subscribe to the store so this component doesn't miss updates
-        this.context.store.subscribe(this.handleChange.bind(this))
+        this.unsubscribe = store.subscribe(this.handleChange.bind(this))
       }
 
+      componentWillUnmount() {
+        this.unsubscribe()
+      }
 
       render() {
         const { store } = this.context
@@ -26,16 +31,30 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
         // Pass state and props into mapStateToProps to generate object (keys) to be used as props for the wrapped component
         const mapStateToPropsObj = mapStateToProps(state, ownProps)
 
+        let mapDispatchToPropsObj = {}
+
         // Wrap the actionCreators in a dispatch... And send them off as props to WrappedComponent
-        const mapDispatchToPropsObj = {}
-        for (let key in mapDispatchToProps) {
-          mapDispatchToPropsObj[key] = (arg) => store.dispatch(mapDispatchToProps[key](arg))
+        if (typeof mapDispatchToProps === 'object') {
+          for (let key in mapDispatchToProps) {
+            mapDispatchToPropsObj[key] = (arg) => store.dispatch(mapDispatchToProps[key](arg))
+          }
+
+          return <WrappedComponent
+            {...this.props}
+            {...mapStateToPropsObj}
+            {...mapDispatchToPropsObj} />
         }
 
-        return <WrappedComponent
-          {...this.props}
-          {...mapStateToPropsObj}
-          {...mapDispatchToPropsObj} />
+        if (typeof mapDispatchToProps === 'function') {
+          mapDispatchToPropsObj = mapDispatchToProps(store.dispatch, ownProps)
+
+          return <WrappedComponent
+            {...this.props}
+            {...mapStateToPropsObj}
+            {...mapDispatchToPropsObj} />
+        }
+
+        return <WrappedComponent {...this.props} {...mapStateToPropsObj} dispatch={store.dispatch} />
       }
     }
   }
