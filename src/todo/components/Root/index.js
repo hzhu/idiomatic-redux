@@ -6,8 +6,6 @@ import TodoApp from '../TodoApp'
 
 const history = createBrowserHistory()
 
-window.myHistory = history
-
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={history}>
