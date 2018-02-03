@@ -3,10 +3,23 @@ import connect from '../../../redux/connect'
 import Todo from '../../components/Todo'
 import { toggleTodo } from  '../../store/Todos/actions'
 
+const TodoList = ({ todos, toggleTodo }) => (
+  <ul>
+    {
+      todos.map(todo => {
+        return (
+          <Todo
+            key={todo.id}
+            {...todo}
+            toggleTodo={toggleTodo}
+          />
+        )
+      })
+    }
+  </ul>
+)
 
-/**
- *  Helper method
- */
+// selector
 const getVisibleTodos = (todos, visibiityFilter) => {
   switch (visibiityFilter) {
     case 'all':
@@ -20,7 +33,6 @@ const getVisibleTodos = (todos, visibiityFilter) => {
   }
 }
 
-
 const mapStateToProps = (state, ownProps) => ({
   todos: getVisibleTodos(
     state.todos,
@@ -28,28 +40,7 @@ const mapStateToProps = (state, ownProps) => ({
   )
 })
 
-
-let TodoList = ({ todos, toggleTodo }) => (
-  <ul>
-    {
-      todos.map(t => {
-        return (
-          <Todo
-            key={t.id}
-            {...t}
-            toggleTodo={toggleTodo}
-          />
-        )
-      })
-    }
-  </ul>
-)
-
-
-TodoList = connect(
+export default connect(
   mapStateToProps,
   { toggleTodo }
 )(TodoList)
-
-
-export default TodoList
