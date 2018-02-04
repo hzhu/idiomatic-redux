@@ -4,7 +4,6 @@ import { todos } from './Todos/reducers'
 import { loadState, saveState } from './localStorage'
 import { throttle } from 'lodash'
 
-
 const configureStore = () => {
   const rootReducer = combineReducers({
     todos

@@ -1,7 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
 
-
 class Provider extends React.Component {
   static childContextTypes = {
     store: object

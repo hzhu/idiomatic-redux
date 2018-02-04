@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import Root from './index'
 import configureStore from '../../store'
 
-
 it('renders without crashing', () => {
   const store = configureStore()
   const div = document.createElement('div')

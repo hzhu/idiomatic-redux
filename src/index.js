@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import configureStore from './todo/store'
 import Root from './todo/components/Root'
 
-
 const store = configureStore()
 
 const render = () => {
