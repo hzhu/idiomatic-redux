@@ -3,8 +3,9 @@ import connect from '../../../redux/connect'
 import Todo from '../../components/Todo'
 import { toggleTodo } from  '../../store/Todos/actions'
 import { getVisibleTodos } from '../../store/Todos/selectors'
+import { withRouter } from 'react-router'
 
-const TodoList = ({ todos, toggleTodo }) => (
+let TodoList = ({ todos, toggleTodo }) => (
   <ul>
     {
       todos.map(todo => {
@@ -23,11 +24,13 @@ const TodoList = ({ todos, toggleTodo }) => (
 const mapStateToProps = (state, ownProps) => ({
   todos: getVisibleTodos(
     state,
-    ownProps.filter
+    ownProps.match.params.filter
   )
 })
 
-export default connect(
+TodoList = connect(
   mapStateToProps,
   { toggleTodo }
 )(TodoList)
+
+export default withRouter(TodoList)
