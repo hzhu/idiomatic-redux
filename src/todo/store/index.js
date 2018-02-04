@@ -1,6 +1,6 @@
 import createStore from '../../redux/createStore'
 import combineReducers from '../../redux/combineReducers'
-import { todos } from './Todos/reducers'
+import todos from './Todos/reducers/todos'
 import { loadState, saveState } from './localStorage'
 import { throttle } from 'lodash'
 
