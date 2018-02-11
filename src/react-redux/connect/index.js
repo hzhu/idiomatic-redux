@@ -2,7 +2,6 @@ import React from 'react'
 import { object } from 'prop-types'
 
 const connect = (mapStateToProps, mapDispatchToProps) => {
-  const originalMapStateToProps = mapStateToProps
   return (WrappedComponent) => {
     return class extends React.Component {
       static contextTypes = {
@@ -10,13 +9,13 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
       }
 
       handleChange() {
-        this.setState({}) // in place of `this.forceUpdate()`
+        this.setState({}) // Used in place of `this.forceUpdate()`.
       }
 
       componentDidMount() {
         const { store } = this.context
 
-        // subscribe to the store so this component doesn't miss updates
+        // Subscribe to the store so this component doesn't miss updates.
         this.unsubscribe = store.subscribe(this.handleChange.bind(this))
       }
 
@@ -31,32 +30,24 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
         // These are the props passed to the connected component.
         const ownProps = this.props
 
-        // Generate object (keys) to be used as props for the wrapped component
-        // Both of the following objects contain keys that will be merged into the wrapped component's props
+        // Object's keys to be used as props for the wrapped component.
         let mapStateToPropsObj = {}
         let mapDispatchToPropsObj = {}
 
         if (typeof mapStateToProps === 'function') {
-          mapStateToProps = mapStateToProps(state, ownProps)
           mapStateToPropsObj = {
-            ...mapStateToPropsObj,
-            ...mapStateToProps
+            ...mapStateToProps(state, ownProps)
           }
         }
 
         if (typeof mapStateToProps === 'object') {
           mapStateToPropsObj = {
-            ...mapStateToPropsObj,
             ...mapStateToProps
           }
         }
 
-        if (typeof originalMapStateToProps === 'function') {
-          const nextProps = originalMapStateToProps(state, ownProps)
-          mapStateToPropsObj = {
-            ...mapStateToPropsObj,
-            ...nextProps
-          }
+        if (typeof mapDispatchToProps === 'function') {
+          mapDispatchToPropsObj = mapDispatchToProps(store.dispatch, ownProps)
         }
 
         // Wrap the actionCreators in a dispatch and send them off as props to wrapped component.
@@ -67,32 +58,14 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
               return store.dispatch(action)
             }
           }
-
-          return (
-            <WrappedComponent
-              {...this.props}
-              {...mapStateToPropsObj}
-              {...mapDispatchToPropsObj}
-            />
-          )
         }
 
-        if (typeof mapDispatchToProps === 'function') {
-          mapDispatchToPropsObj = mapDispatchToProps(store.dispatch, ownProps)
-
+        // If mapStateToProps & mapDispatchToProps are not passed to `connect`
+        // just provide dispatch to the wrapped component.
+        if (mapStateToProps === undefined && mapDispatchToProps === undefined) {
           return (
             <WrappedComponent
-              {...this.props}
-              {...mapStateToPropsObj}
-              {...mapDispatchToPropsObj}
-            />
-          )
-        }
-
-        if (arguments.length === 0) {
-          return (
-            <WrappedComponent
-              {...this.props}
+              {...ownProps}
               dispatch={store.dispatch}
             />
           )
@@ -100,9 +73,9 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
 
         return (
           <WrappedComponent
-            {...this.props}
+            {...ownProps}
             {...mapStateToPropsObj}
-            dispatch={store.dispatch}
+            {...mapDispatchToPropsObj}
           />
         )
       }
