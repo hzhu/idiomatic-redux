@@ -1,23 +1,19 @@
 import React from 'react'
-import connect from '../../../redux/connect'
+import { withRouter } from 'react-router'
+import connect from '../../../react-redux/connect'
 import Todo from '../../components/Todo'
 import { toggleTodo } from  '../../store/Todos/actions'
 import { getVisibleTodos } from '../../store/Todos/selectors'
-import { withRouter } from 'react-router'
 
 let TodoList = ({ todos, toggleTodo }) => (
   <ul>
-    {
-      todos.map(todo => {
-        return (
-          <Todo
-            key={todo.id}
-            {...todo}
-            toggleTodo={toggleTodo}
-          />
-        )
-      })
-    }
+    {todos.map(todo => (
+      <Todo
+        key={todo.id}
+        {...todo}
+        toggleTodo={toggleTodo}
+      />
+    ))}
   </ul>
 )
 

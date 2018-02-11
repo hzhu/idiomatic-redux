@@ -68,28 +68,43 @@ const connect = (mapStateToProps, mapDispatchToProps) => {
             }
           }
 
-          return <WrappedComponent
-            {...this.props}
-            {...mapStateToPropsObj}
-            {...mapDispatchToPropsObj} />
+          return (
+            <WrappedComponent
+              {...this.props}
+              {...mapStateToPropsObj}
+              {...mapDispatchToPropsObj}
+            />
+          )
         }
 
         if (typeof mapDispatchToProps === 'function') {
           mapDispatchToPropsObj = mapDispatchToProps(store.dispatch, ownProps)
 
-          return <WrappedComponent
-            {...this.props}
-            {...mapStateToPropsObj}
-            {...mapDispatchToPropsObj} />
+          return (
+            <WrappedComponent
+              {...this.props}
+              {...mapStateToPropsObj}
+              {...mapDispatchToPropsObj}
+            />
+          )
         }
 
         if (arguments.length === 0) {
           return (
-            <WrappedComponent {...this.props} dispatch={store.dispatch} />
+            <WrappedComponent
+              {...this.props}
+              dispatch={store.dispatch}
+            />
           )
         }
 
-        return <WrappedComponent {...this.props} {...mapStateToPropsObj} dispatch={store.dispatch} />
+        return (
+          <WrappedComponent
+            {...this.props}
+            {...mapStateToPropsObj}
+            dispatch={store.dispatch}
+          />
+        )
       }
     }
   }

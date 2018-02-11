@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
-import Provider from '../../../redux/Provider'
+import Provider from '../../../react-redux/Provider'
 import TodoApp from '../TodoApp'
 
 const history = createBrowserHistory()
