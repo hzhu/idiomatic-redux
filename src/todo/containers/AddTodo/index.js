@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import connect from '../../../redux/connect'
 import { addTodo } from '../../store/Todos/actions'
 
 const AddTodo = ({ dispatch }) => {

@@ -24,7 +24,7 @@ let TodoList = ({ todos, toggleTodo }) => (
 const mapStateToProps = (state, ownProps) => ({
   todos: getVisibleTodos(
     state,
-    ownProps.match.params.filter
+    ownProps.match.params.filter || 'all'
   )
 })
 

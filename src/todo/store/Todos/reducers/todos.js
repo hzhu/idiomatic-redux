@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import combineReducers from '../../../../redux/combineReducers'
 import todo from './todo'
 
 const byId = (state = {}, action) => {
